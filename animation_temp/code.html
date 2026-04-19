@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ENGINEER_CORE - Application Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=Space+Grotesk:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#001a41",
+                        "surface-bright": "#3a3939",
+                        "on-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#00dbe9",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary-fixed-variant": "#004f54",
+                        "secondary-fixed": "#e2e2e2",
+                        "on-secondary-container": "#b4b5b5",
+                        "surface": "#131313",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "outline-variant": "#414754",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary": "#00363a",
+                        "secondary-container": "#454747",
+                        "on-error": "#690005",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface-tint": "#adc7ff",
+                        "on-primary-container": "#00285b",
+                        "on-surface-variant": "#c1c6d7",
+                        "primary-fixed": "#d8e2ff",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e5e2e1",
+                        "outline": "#8b90a0",
+                        "primary-container": "#4a8eff",
+                        "tertiary": "#00dbe9",
+                        "tertiary-fixed": "#7df4ff",
+                        "inverse-primary": "#005bc0",
+                        "on-primary": "#002e68",
+                        "surface-container": "#201f1f",
+                        "surface-variant": "#353534",
+                        "on-primary-fixed-variant": "#004493",
+                        "surface-dim": "#131313",
+                        "on-tertiary-container": "#002f33",
+                        "primary-fixed-dim": "#adc7ff",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary": "#2f3131",
+                        "primary": "#adc7ff",
+                        "background": "#131313",
+                        "secondary": "#c6c6c7",
+                        "tertiary-container": "#00a0aa",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#002022",
+                        "surface-container-low": "#1c1b1b",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-lowest": "#0e0e0e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Ambient Glow Utilities within Design System constraints */
+        .glow-text-primary {
+            text-shadow: 0 0 20px rgba(74, 142, 255, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex flex-col antialiased selection:bg-tertiary selection:text-on-tertiary overflow-hidden">
+<!-- Main Canvas: Hero Section -->
+<main class="flex-grow relative flex items-center justify-center min-h-screen w-full">
+<!-- Background Layer: Technical Grid -->
+<div class="absolute inset-0 z-0 opacity-10 pointer-events-none" style="background-image: linear-gradient(to right, #414754 1px, transparent 1px), linear-gradient(to bottom, #414754 1px, transparent 1px); background-size: 4rem 4rem;">
+</div>
+<!-- Background Layer: Data Stream (Simulated Image) -->
+<div class="absolute right-0 top-0 w-full md:w-2/3 h-full z-0 opacity-20 pointer-events-none bg-cover bg-right bg-no-repeat mix-blend-screen" data-alt="abstract vertical stream of glowing cyan binary code and SCADA terminal interfaces cascading down a dark technical background, low opacity, long exposure effect" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrcQKeY_4Ka5sViVzS21BsNvM14-jqHYP7gdleqzW5zPtBMoTHIHYAWCr2zW4cIETtMzisXevNcu4Ns-1qXpnJQDTLVPPy78ZCyQ8gwS4_hjJjQYVFGu7zB9y4GH_6zfwbY_tt7wTPDl_grcVRdEuuw-r3LzB2Mn4l_veYVnL_ZSgCaZN_TWFz2rr0nwvbs66VERK600xxFEYaN-Fp0xScW_R2dZKo94UzzVfAVc4dp8WLQp7kDOY3U5JEzx0LEdfE2YR9FgIXw18');">
+<!-- Fallback gradient to blend the image edge -->
+<div class="absolute inset-0 bg-gradient-to-r from-surface to-transparent"></div>
+</div>
+<!-- Hero Content Container -->
+<div class="relative z-10 w-full px-8 flex justify-center items-center lg:px-16">
+<!-- Imbalanced Typographic Anchor (Simulating offset reveal state) -->
+<h1 class="font-headline font-extrabold text-[clamp(1rem,4.5vw,3.5rem)] leading-none tracking-tighter uppercase text-center flex items-center justify-center gap-x-2 md:gap-x-4 whitespace-nowrap overflow-hidden"><span class="inline-block text-on-surface transform transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1">
+                    CONVIERTE TU IDEA EN UNA APLICACION
+                </span>
+<span class="inline-block text-primary-container glow-text-primary relative ml-1 md:ml-2">
+                    REAL
+                    <span class="absolute -left-1 md:-left-2 top-1/2 -translate-y-1/2 h-[70%] w-1 bg-primary-container hidden md:block"></span>
+</span></h1>
+</div>
+</main>
+</body></html>

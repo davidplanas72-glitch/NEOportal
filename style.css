@@ -1,0 +1,362 @@
+:root {
+    --bg-dark: #020205;
+    --neon-blue: #00f2ff;
+    --neon-purple: #8a2be2;
+    --glass-bg: rgba(20, 20, 30, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #ffffff;
+    --text-muted: #8892b0;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    /* Estrellas simples de fondo */
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.6), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 50px 160px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.7), rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+}
+
+/* Navbar */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--text-main), var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo span {
+    color: var(--neon-blue);
+    -webkit-text-fill-color: var(--neon-blue);
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--neon-blue);
+}
+
+/* Espacio del Sistema Solar (Hero) */
+.nexus-system {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px; /* Profundidad 3D */
+    overflow: hidden;
+    position: relative;
+}
+
+.titles {
+    position: absolute;
+    top: 20%;
+    text-align: center;
+    z-index: 10;
+}
+
+.titles h1 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+}
+
+.titles p {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+/* El Núcleo / Planeta (3D Holográfico) */
+.core-planet {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at 40% 40%, rgba(0, 242, 255, 0.1), #000510 70%);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 60px rgba(0, 200, 255, 0.4),        /* Resplandor exterior */
+        inset -20px -20px 40px rgba(0,0,0,0.9), /* Sombra curva inferior para volumen */
+        inset 10px 10px 30px rgba(255,255,255,0.2); /* Brillo superior */
+    z-index: 5;
+    overflow: hidden; /* Corta la textura para que sea redonda */
+}
+
+/* Textura del globo (cuadrícula holográfica en rotación) */
+.core-planet::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 200%; /* El doble de ancho para poder desplazarlo */
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 242, 255, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: spin-earth 15s linear infinite;
+}
+
+/* Sombra interior adicional sobre la textura para curvarla visualmente */
+.core-planet::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    box-shadow: inset -25px -10px 40px rgba(0,0,0,0.9);
+}
+
+/* Órbitas */
+.orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(0, 242, 255, 0.2);
+    transform-style: preserve-3d;
+    animation: rotate-orbit linear infinite;
+}
+
+.orbit-1 { width: 400px; height: 400px; animation-duration: 20s; }
+.orbit-2 { width: 600px; height: 600px; animation-duration: 35s; animation-direction: reverse; }
+.orbit-3 { width: 800px; height: 800px; animation-duration: 50s; }
+
+/* Inclinamos las órbitas para dar efecto 3D isométrico */
+.orbit-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateX(60deg);
+    transform-style: preserve-3d;
+}
+
+/* Satélites (Apps) */
+.satellite {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin-left: -30px; /* Centrar respecto al borde */
+    margin-top: -30px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+    /* Contrarrestamos la rotación de la órbita y la inclinación X para que siempre mire al frente */
+    animation: anti-rotate-orbit linear infinite;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.orbit-1 .satellite { animation-duration: 20s; }
+.orbit-2 .satellite { animation-duration: 35s; animation-direction: reverse; }
+.orbit-3 .satellite { animation-duration: 50s; }
+
+.satellite:hover {
+    box-shadow: 0 0 30px var(--neon-blue);
+    transform: scale(1.2) rotateX(-60deg) !important; /* Mantenemos la corrección X en el hover */
+    z-index: 20;
+}
+
+.sat-icon {
+    font-size: 1.5rem;
+}
+
+.sat-tooltip {
+    position: absolute;
+    bottom: -30px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--neon-blue);
+    opacity: 0;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.satellite:hover .sat-tooltip {
+    opacity: 1;
+    bottom: -40px;
+}
+
+/* Sección Servicios Mágicos */
+.services {
+    padding: 10rem 5%;
+    position: relative;
+    z-index: 10;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-header h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--text-main);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.service-card {
+    background: linear-gradient(145deg, rgba(20,20,30,0.8), rgba(5,5,10,0.9));
+    border: 1px solid var(--glass-border);
+    border-radius: 1rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+    transform: translateX(-100%);
+    transition: 0.6s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    border-color: rgba(0, 242, 255, 0.3);
+}
+
+.service-card:hover::before {
+    transform: translateX(100%);
+}
+
+.service-card h3 {
+    margin: 1.5rem 0;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+}
+
+.service-card p {
+    color: var(--text-muted);
+}
+
+.btn-magic {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--neon-blue);
+    border: 1px solid var(--neon-blue);
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-magic:hover {
+    background: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+/* Keyframes */
+@keyframes pulse {
+    0% { box-shadow: 0 0 30px var(--neon-purple), inset -10px -10px 20px rgba(0,0,0,0.8); }
+    100% { box-shadow: 0 0 80px var(--neon-blue), inset -10px -10px 20px rgba(0,0,0,0.8); }
+}
+
+@keyframes spin-earth {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes rotate-orbit {
+    from { transform: rotateZ(0deg); }
+    to { transform: rotateZ(360deg); }
+}
+
+/* Animación del Meteorito */
+.meteor {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffffff);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px var(--neon-blue));
+    z-index: 2;
+    pointer-events: none;
+    animation: meteor-fall linear forwards;
+}
+
+/* Cabeza brillante del meteorito */
+.meteor::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 15px 5px rgba(0, 242, 255, 0.8);
+}
+
+@keyframes meteor-fall {
+    0% { transform: translate(0, 0) rotate(var(--angle)); opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) rotate(var(--angle)); opacity: 0; }
+}
+
+/* Magia de la animación: Contrarrestar rotación para que las tarjetas no se pongan boca abajo */
+/* Al orbitar, el contenedor gira en Z. Para que el elemento no gire respecto al usuario, gira en -Z */
+/* Y como el padre está rotado en X 60deg, deshacemos esa rotación aquí tb */
+@keyframes anti-rotate-orbit {
+    from { transform: rotateZ(0deg) rotateX(-60deg); }
+    to { transform: rotateZ(-360deg) rotateX(-60deg); }
+}

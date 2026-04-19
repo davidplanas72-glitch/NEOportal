@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEO PORTAL | Kinetic Vault</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#8ff5ff",
+                        "secondary-container": "#6f00be",
+                        "tertiary": "#7de9ff",
+                        "secondary-fixed": "#e5c6ff",
+                        "tertiary-fixed-dim": "#1ad0eb",
+                        "secondary-dim": "#9c48ea",
+                        "surface-bright": "#1f2b49",
+                        "on-primary": "#005d63",
+                        "error-container": "#9f0519",
+                        "on-secondary-fixed": "#4f0089",
+                        "primary-fixed-dim": "#00deec",
+                        "surface-variant": "#192540",
+                        "on-primary-container": "#005359",
+                        "on-secondary-fixed-variant": "#7511c3",
+                        "surface-container": "#0f1930",
+                        "surface-container-highest": "#192540",
+                        "primary-container": "#00eefc",
+                        "on-secondary-container": "#e9cdff",
+                        "primary-fixed": "#00eefc",
+                        "surface-dim": "#060e20",
+                        "primary-dim": "#00deec",
+                        "on-tertiary-fixed": "#00363e",
+                        "tertiary-fixed": "#3adffa",
+                        "surface-container-lowest": "#000000",
+                        "inverse-surface": "#faf8ff",
+                        "secondary-fixed-dim": "#dbb4ff",
+                        "inverse-on-surface": "#4d556b",
+                        "tertiary-dim": "#1ad0eb",
+                        "on-tertiary-fixed-variant": "#005561",
+                        "on-tertiary": "#005561",
+                        "on-tertiary-container": "#004b56",
+                        "on-error-container": "#ffa8a3",
+                        "secondary": "#c180ff",
+                        "primary": "#8ff5ff",
+                        "on-background": "#dee5ff",
+                        "on-surface-variant": "#a3aac4",
+                        "on-primary-fixed-variant": "#005e64",
+                        "outline-variant": "#40485d",
+                        "surface": "#060e20",
+                        "on-error": "#490006",
+                        "surface-container-low": "#091328",
+                        "error-dim": "#d7383b",
+                        "inverse-primary": "#006a71",
+                        "error": "#ff716c",
+                        "background": "#060e20",
+                        "on-secondary": "#33005b",
+                        "on-surface": "#dee5ff",
+                        "on-primary-fixed": "#003f43",
+                        "outline": "#6d758c",
+                        "tertiary-container": "#3adffa",
+                        "surface-container-high": "#141f38"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            overflow: hidden;
+            background-color: #060e20;
+        }
+
+        .cyber-orb {
+            box-shadow: 0 0 100px -20px rgba(0, 240, 255, 0.4);
+        }
+
+        .star-field {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        .satellite-orbit {
+            animation: rotate 20s linear infinite;
+        }
+
+        .satellite-orbit:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .reverse-rotate {
+            animation: reverse-rotate 20s linear infinite;
+        }
+
+        .satellite-orbit:hover .reverse-rotate {
+            animation-play-state: paused;
+        }
+
+        @keyframes reverse-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+
+        .bloom-effect {
+            filter: drop-shadow(0 0 12px rgba(143, 245, 255, 0.4));
+        }
+
+        /* Stitch Integration Styles */
+        .technical-grid {
+            background-image: linear-gradient(to right, rgba(65, 71, 84, 0.2) 1px, transparent 1px), 
+                              linear-gradient(to bottom, rgba(65, 71, 84, 0.2) 1px, transparent 1px);
+            background-size: 4rem 4rem;
+        }
+
+        .glow-text-primary {
+            text-shadow: 0 0 20px rgba(74, 142, 255, 0.6);
+        }
+
+        .reveal-text {
+            display: inline-block;
+            animation: text-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        @keyframes text-reveal {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .binary-stream {
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrcQKeY_4Ka5sViVzS21BsNvM14-jqHYP7gdleqzW5zPtBMoTHIHYAWCr2zW4cIETtMzisXevNcu4Ns-1qXpnJQDTLVPPy78ZCyQ8gwS4_hjJjQYVFGu7zB9y4GH_6zfwbY_tt7wTPDl_grcVRdEuuw-r3LzB2Mn4l_veYVnL_ZSgCaZN_TWFz2rr0nwvbs66VERK600xxFEYaN-Fp0xScW_R2dZKo94UzzVfAVc4dp8WLQp7kDOY3U5JEzx0LEdfE2YR9FgIXw18');
+            mix-blend-mode: screen;
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface bg-background h-screen flex flex-col relative star-field">
+
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-8 py-4 max-w-full z-50 bg-slate-950/60 backdrop-blur-xl shadow-[0_0_50px_-12px_rgba(0,240,255,0.15)]">
+<div class="text-2xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-primary font-headline">
+            NEO PORTAL
+        </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-headline tracking-tight" href="#">NEO</a>
+<a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="#">Network</a>
+<a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="#">Intelligence</a>
+<a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="#">Security</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-white text-background px-6 py-2 rounded-full font-bold transition-all hover:bg-primary hover:shadow-[0_0_20px_rgba(143,245,255,0.4)] scale-95 active:scale-90 font-label text-sm tracking-tight">
+                Access Vault
+            </button>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-cyan-300 transition-colors" data-icon="settings">settings</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-cyan-300 transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Main Content: Kinetic Vault Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center relative overflow-hidden">
+    <!-- Background Technical Grid (Integrated from Stitch) -->
+    <div class="absolute inset-0 z-0 opacity-10 technical-grid pointer-events-none"></div>
+    
+    <!-- Background Binary Data Stream (Integrated from Stitch) -->
+    <div class="absolute right-0 top-0 w-full md:w-1/2 h-full z-0 opacity-20 bg-cover bg-right bg-no-repeat binary-stream pointer-events-none">
+        <div class="absolute inset-0 bg-gradient-to-r from-background to-transparent"></div>
+    </div>
+
+    <!-- Background Lighting -->
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]"></div>
+    </div>
+
+<!-- 3D Earth and Satellite Simulation Container -->
+<div class="relative w-full h-full flex items-center justify-center">
+<!-- Global Identity Label -->
+<div class="absolute z-10 left-1/2 -translate-x-1/2 translate-y-3 text-center pointer-events-none ml-[0.1em] overflow-hidden">
+<h1 class="text-6xl md:text-8xl font-extrabold font-headline tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-b from-on-surface to-on-surface-variant/20 uppercase">
+                    NEO
+                </h1>
+<div class="mt-8 flex flex-wrap items-center justify-center gap-x-2 md:gap-x-4 whitespace-nowrap">
+<span class="reveal-text font-headline text-sm md:text-xl tracking-[0.15em] text-on-surface/90 uppercase" style="animation-delay: 0.3s;">
+                        Convierte tu idea en una aplicación
+                    </span>
+<span class="reveal-text font-headline text-sm md:text-xl tracking-[0.15em] text-primary glow-text-primary relative uppercase" style="animation-delay: 0.6s;">
+                        real
+                        <span class="absolute -left-1 md:-left-2 top-1/2 -translate-y-1/2 h-[75%] w-0.5 bg-primary hidden md:block"></span>
+                    </span>
+</div>
+</div>
+<!-- The Earth Core -->
+<div class="relative w-[300px] h-[300px] md:w-[450px] md:h-[450px] z-0 rounded-full cyber-orb overflow-hidden">
+<img class="w-full h-full object-cover grayscale brightness-125 contrast-125" data-alt="Hyper-realistic highly detailed 3D earth globe in deep space with glowing city lights visible on the dark side of the sphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeDf6R3XQpEvvckd1HsfWbBXyJ-udoNLwxuaUMEb9OGKBraonRgZi0qLAKhy_V4v_UvP6sgWQdpyc7l7dX5YpPYcoHo7xAWRbYS4Gnf8z1tpAHu_brOgeszaTX4QJXIuzj-_WSOh_LN6c7_jAgTbKtBmBwnl5a2jXIKdW-uR3CcD58JN0at16yoqn11xpIbcjGUp35MjabQ4W98LAb79j14fuf4_GJf1oarz9qLzWqfJro3rFWQWM_pWiGgneDPe93CyCDFSwgMLc"/>
+<!-- Atmospheric Glow Overlay -->
+<div class="absolute inset-0 rounded-full shadow-[inset_0_0_80px_rgba(0,240,255,0.4)] pointer-events-none"></div>
+<div class="absolute inset-0 rounded-full bg-gradient-to-tr from-surface-dim/80 via-transparent to-primary/20 pointer-events-none"></div>
+</div>
+<!-- Orbits -->
+<!-- NutrisalAI Orbit -->
+<div class="absolute w-[500px] h-[500px] md:w-[700px] md:h-[700px] border border-outline-variant/10 rounded-full satellite-orbit group pointer-events-none">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<a href="https://nutrisaltai.eu" target="_blank" class="flex flex-col items-center gap-2 reverse-rotate cursor-pointer transition-transform duration-500">
+<div class="w-8 h-8 md:w-12 md:h-12 bg-surface-container-highest/60 backdrop-blur-md rounded-full border border-primary/50 flex items-center justify-center bloom-effect transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(34,211,238,0.8)]">
+<span class="material-symbols-outlined text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-green-300 via-emerald-400 to-cyan-400" data-icon="nutrition">nutrition</span>
+</div>
+<span class="opacity-0 group-hover:opacity-100 font-label text-[10px] tracking-[0.2em] text-primary bg-surface-container-lowest/80 px-3 py-1.5 rounded-full border border-primary/20 backdrop-blur-xl transition-all duration-300 translate-y-2 group-hover:translate-y-0 uppercase">NutrisalAI</span>
+</a>
+</div>
+</div>
+
+<!-- EraseMarkLM Orbit -->
+<div class="absolute w-[400px] h-[400px] md:w-[580px] md:h-[580px] border border-outline-variant/10 rounded-full satellite-orbit group pointer-events-none" style="animation-duration: 25s; transform: rotate(45deg);">
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 pointer-events-auto">
+<a href="#" class="flex flex-col items-center gap-2 reverse-rotate cursor-pointer transition-transform duration-500" style="animation-duration: 25s;">
+<div class="w-8 h-8 md:w-12 md:h-12 bg-surface-container-highest/60 backdrop-blur-md rounded-full border border-secondary/50 flex items-center justify-center bloom-effect transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(192,132,252,0.8)]">
+<span class="material-symbols-outlined text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-pink-400 via-purple-400 to-indigo-400" data-icon="auto_fix_high">auto_fix_high</span>
+</div>
+<div class="flex flex-col items-center translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+<span class="opacity-0 group-hover:opacity-100 font-label text-[10px] tracking-[0.2em] text-secondary bg-surface-container-lowest/80 px-3 py-1.5 rounded-full border border-secondary/20 backdrop-blur-xl uppercase">EraseMarkLM</span>
+<span class="opacity-0 group-hover:opacity-100 font-label text-[8px] text-secondary/60 mt-1 uppercase tracking-widest">Coming Soon</span>
+</div>
+</a>
+</div>
+</div>
+
+<!-- LeonardoVPN Orbit -->
+<div class="absolute w-[600px] h-[600px] md:w-[850px] md:h-[850px] border border-outline-variant/10 rounded-full satellite-orbit group pointer-events-none" style="animation-duration: 35s; transform: rotate(-30deg);">
+<div class="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+<a href="../landing/index.html" class="flex flex-col items-center gap-2 reverse-rotate cursor-pointer transition-transform duration-500" style="animation-duration: 35s;">
+<div class="w-8 h-8 md:w-12 md:h-12 bg-surface-container-highest/60 backdrop-blur-md rounded-full border border-tertiary/50 flex items-center justify-center bloom-effect transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(14,165,233,0.8)]">
+<span class="material-symbols-outlined text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600" data-icon="shield_lock">shield_lock</span>
+</div>
+<span class="opacity-0 group-hover:opacity-100 font-label text-[10px] tracking-[0.2em] text-tertiary bg-surface-container-lowest/80 px-3 py-1.5 rounded-full border border-tertiary/20 backdrop-blur-xl transition-all duration-300 translate-y-2 group-hover:translate-y-0 uppercase">LeonardoVPN</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Bespoke Services Section (Floating Bottom Card) -->
+<div class="absolute bottom-24 w-full px-12 flex justify-center pointer-events-none">
+<div class="max-w-4xl w-full flex flex-col md:flex-row items-center justify-between p-6 bg-surface-container/60 backdrop-blur-2xl rounded-3xl border border-outline-variant/15 pointer-events-auto">
+<div class="flex items-center gap-6 mb-4 md:mb-0">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="hub">hub</span>
+</div>
+<div>
+<h3 class="font-headline text-lg font-bold text-on-surface uppercase tracking-tight">Proyectos a Medida</h3>
+<p class="font-body text-sm text-on-surface-variant max-w-xs">“Lleva tus ideas al siguiente nivel”</p>
+</div>
+</div>
+<button class="px-8 py-3 rounded-full bg-surface-container-highest border border-outline-variant text-primary font-label text-xs tracking-widest uppercase hover:bg-primary hover:text-on-primary transition-all active:scale-95 shadow-xl">
+                    SOLICITE SOLUCIONES PERSONALIZADAS
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 w-full z-40 flex flex-col md:flex-row justify-between items-center px-12 py-8 bg-transparent">
+<div class="font-label text-[10px] uppercase tracking-[0.3em] text-slate-500 order-2 md:order-1 mt-4 md:mt-0">
+            © 2024 NEO PORTAL. SECURED BY KINETIC VAULT.
+        </div>
+<div class="flex gap-8 order-1 md:order-2">
+<a class="font-label text-[10px] uppercase tracking-widest text-slate-500 hover:text-cyan-300 transition-opacity opacity-80 hover:opacity-100" href="#">Bespoke Services</a>
+<a class="font-label text-[10px] uppercase tracking-widest text-slate-500 hover:text-cyan-300 transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Protocol</a>
+<a class="font-label text-[10px] uppercase tracking-widest text-slate-500 hover:text-cyan-300 transition-opacity opacity-80 hover:opacity-100 flex items-center gap-2" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                System Status
+            </a>
+</div>
+</footer>
+<!-- Digital Narrative HUD (Minimalist White/Cyan) -->
+<div class="fixed top-1/4 left-10 hidden lg:block w-96">
+    <div class="relative p-8 backdrop-blur-3xl rounded-xl border border-white/5 bg-on-surface-variant/5 shadow-2xl shadow-black/40">
+        <!-- Minimalist L-Shape Accents (Precision Logic) -->
+        <div class="absolute -top-[1px] -left-[1px] w-6 h-6 border-t border-l border-white/30"></div>
+        
+        <div class="space-y-6">
+            <div class="flex items-center gap-3">
+                <span class="w-4 h-[1px] bg-primary/40"></span>
+                <p class="font-label text-[10px] text-primary tracking-[0.6em] uppercase">System Overview</p>
+            </div>
+            
+            <div class="space-y-5">
+                <h2 class="font-headline text-3xl font-bold text-white tracking-tight leading-none">
+                    Ecosistema <span class="text-primary glow-text-primary">NEO.</span>
+                </h2>
+                <div class="space-y-4">
+                    <p class="font-headline text-xl leading-snug font-medium text-white/90">
+                        Tu empresa como un planeta en crecimiento.
+                    </p>
+                    <p class="font-body text-base leading-relaxed text-slate-400">
+                        A su alrededor orbitan nuestros <span class="text-white font-bold">satélites</span>: aplicaciones reales ya implantadas que automatizan, captan y evolucionan tu negocio.
+                    </p>
+                </div>
+                
+                <div class="mt-2 py-4 px-5 bg-white/5 border-l-4 border-primary/50 shadow-inner">
+                    <p class="font-headline text-lg font-medium text-white/80 italic">
+                        "Cada satélite es una solución probada."
+                    </p>
+                    <p class="font-headline text-2xl text-primary font-black mt-2 uppercase tracking-tighter drop-shadow-sm">
+                        El siguiente es el tuyo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fixed top-1/4 right-10 hidden lg:block text-right">
+<div class="mb-8">
+<span class="material-symbols-outlined text-4xl text-primary/20" data-icon="language">language</span>
+</div>
+<div class="space-y-2">
+<div class="h-0.5 w-24 bg-gradient-to-r from-transparent to-primary/40 rounded-full"></div>
+<div class="h-0.5 w-16 ml-auto bg-gradient-to-r from-transparent to-secondary/40 rounded-full"></div>
+<div class="h-0.5 w-20 ml-auto bg-gradient-to-r from-transparent to-tertiary/40 rounded-full"></div>
+</div>
+</div>
+</body></html>

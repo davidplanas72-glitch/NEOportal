@@ -1,0 +1,4 @@
+_backups/
+animation_temp/
+*.log
+.DS_Store

@@ -162,15 +162,21 @@
             NEO PORTAL
         </div>
 <nav class="hidden md:flex items-center gap-8">
-<a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-headline tracking-tight" href="#">NEO</a>
-<a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="#">Network</a>
-<a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="#">Intelligence</a>
-<a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="#">Security</a>
+<a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-headline tracking-tight" href="index.html">PORTAL</a>
+<a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="vpn.html">Leonardo VPN</a>
+<a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="aplicaciones.html">APLICACIONES</a>
+<a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="contacto.html">CONTACTO</a>
 </nav>
 <div class="flex items-center gap-4">
-<button class="bg-white text-background px-6 py-2 rounded-full font-bold transition-all hover:bg-primary hover:shadow-[0_0_20px_rgba(143,245,255,0.4)] scale-95 active:scale-90 font-label text-sm tracking-tight">
-                Access Vault
-            </button>
+<div class="relative group">
+    <select class="bg-surface-container-highest/60 text-on-surface border border-white/10 rounded-full px-4 py-2 font-bold text-xs tracking-widest uppercase cursor-pointer appearance-none hover:border-primary/50 transition-all focus:outline-none focus:ring-1 focus:ring-primary/50 backdrop-blur-xl pr-8">
+        <option value="es">ES</option>
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+        <option value="de">DE</option>
+    </select>
+    <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-xs pointer-events-none text-slate-400">expand_more</span>
+</div>
 <span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-cyan-300 transition-colors" data-icon="settings">settings</span>
 <span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-cyan-300 transition-colors" data-icon="account_circle">account_circle</span>
 </div>
@@ -195,7 +201,7 @@
 <!-- Global Identity Label -->
 <div class="absolute z-10 left-1/2 -translate-x-1/2 translate-y-3 text-center pointer-events-none ml-[0.1em] overflow-hidden">
 <h1 class="text-6xl md:text-8xl font-extrabold font-headline tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-b from-on-surface to-on-surface-variant/20 uppercase">
-                    NEO
+                    PORTAL
                 </h1>
 <div class="mt-8 flex flex-wrap items-center justify-center gap-x-2 md:gap-x-4 whitespace-nowrap">
 <span class="reveal-text font-headline text-sm md:text-xl tracking-[0.15em] text-on-surface/90 uppercase" style="animation-delay: 0.3s;">
@@ -205,6 +211,11 @@
                         real
                         <span class="absolute -left-1 md:-left-2 top-1/2 -translate-y-1/2 h-[75%] w-0.5 bg-primary hidden md:block"></span>
                     </span>
+</div>
+<div class="mt-4 flex items-center justify-center">
+    <span class="reveal-text font-headline text-xs md:text-sm tracking-[0.4em] text-slate-400 uppercase font-medium" style="animation-delay: 0.9s;">
+        <span class="inline-block animate-pulse" style="animation-duration: 4s; animation-delay: 2s;">Particulares y Empresas</span>
+    </span>
 </div>
 </div>
 <!-- The Earth Core -->
@@ -245,7 +256,7 @@
 <!-- LeonardoVPN Orbit -->
 <div class="absolute w-[600px] h-[600px] md:w-[850px] md:h-[850px] border border-outline-variant/10 rounded-full satellite-orbit group pointer-events-none" style="animation-duration: 35s; transform: rotate(-30deg);">
 <div class="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
-<a href="https://vpn.nutrisaltai.eu" class="flex flex-col items-center gap-2 reverse-rotate cursor-pointer transition-transform duration-500" style="animation-duration: 35s;">
+<a href="https://app.leonardovpn.com" class="flex flex-col items-center gap-2 reverse-rotate cursor-pointer transition-transform duration-500" style="animation-duration: 35s;">
 <div class="w-8 h-8 md:w-12 md:h-12 bg-surface-container-highest/60 backdrop-blur-md rounded-full border border-tertiary/50 flex items-center justify-center bloom-effect transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_40px_rgba(14,165,233,0.8)]">
 <span class="material-symbols-outlined text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600" data-icon="shield_lock">shield_lock</span>
 </div>

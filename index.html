@@ -91,8 +91,18 @@
         }
 
         .star-field {
-            background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
-            background-size: 40px 40px;
+            background: #000;
+        }
+
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.8;
+            pointer-events: none;
         }
 
         .satellite-orbit {
@@ -155,6 +165,8 @@
     </style>
 </head>
 <body class="font-body text-on-surface bg-background h-screen flex flex-col relative star-field">
+
+<canvas id="matrix-canvas"></canvas>
 
 <!-- Announcement Banner -->
 <div class="fixed top-0 w-full h-10 bg-gradient-to-r from-primary/10 via-primary/20 to-primary/10 border-b border-primary/20 flex items-center justify-center z-[100] backdrop-blur-md">
@@ -353,4 +365,52 @@
 <div class="h-0.5 w-20 ml-auto bg-gradient-to-r from-transparent to-tertiary/40 rounded-full"></div>
 </div>
 </div>
+<script>
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const fontSize = 16;
+    let columns = Math.floor(width / fontSize);
+    let drops = [];
+
+    function initDrops() {
+        columns = Math.floor(width / fontSize);
+        drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = Math.random() * -100;
+        }
+    }
+
+    initDrops();
+
+    function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = '#00FF00';
+        ctx.font = `bold ${fontSize}px monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = Math.random() > 0.5 ? '0' : '1';
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+        requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        initDrops();
+    });
+
+    requestAnimationFrame(draw);
+</script>
 </body></html>

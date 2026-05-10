@@ -91,7 +91,13 @@
         }
 
         .star-field {
-            background: #000;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+            background-size: 40px 40px;
+            transition: background 0.5s ease;
+        }
+
+        .star-field.matrix-mode {
+            background: #000 !important;
         }
 
         #matrix-canvas {
@@ -101,8 +107,70 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.8;
+            opacity: 0;
             pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        #matrix-canvas.active {
+            opacity: 0.8;
+        }
+
+        /* Estilos para el Switch */
+        .matrix-toggle {
+            display: flex;
+            items-center: center;
+            gap: 8px;
+            margin-right: 16px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255,255,255,0.1);
+            transition: .4s;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 2px;
+            bottom: 2px;
+            background-color: #6d758c;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: rgba(0, 255, 0, 0.1);
+            border-color: rgba(0, 255, 0, 0.3);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(14px);
+            background-color: #00FF00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
         }
 
         .satellite-orbit {
@@ -187,9 +255,18 @@
 <a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="aplicaciones.html">APLICACIONES</a>
 <a class="text-slate-400 hover:text-cyan-200 transition-colors font-headline tracking-tight" href="contacto.html">CONTACTO</a>
 </nav>
-<div class="flex items-center gap-4">
-<div class="relative group">
-    <select class="bg-surface-container-highest/60 text-on-surface border border-white/10 rounded-full px-4 py-2 font-bold text-xs tracking-widest uppercase cursor-pointer appearance-none hover:border-primary/50 transition-all focus:outline-none focus:ring-1 focus:ring-primary/50 backdrop-blur-xl pr-8">
+    <div class="flex items-center gap-4">
+        <!-- Matrix Switch -->
+        <div class="matrix-toggle hidden md:flex items-center">
+            <span class="text-[9px] font-label tracking-widest text-slate-500 mr-2 uppercase">Matrix Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="matrix-switch">
+                <span class="slider"></span>
+            </label>
+        </div>
+        
+        <div class="relative group">
+            <select class="bg-surface-container-highest/60 text-on-surface border border-white/10 rounded-full px-4 py-2 font-bold text-xs tracking-widest uppercase cursor-pointer appearance-none hover:border-primary/50 transition-all focus:outline-none focus:ring-1 focus:ring-primary/50 backdrop-blur-xl pr-8">
         <option value="es">ES</option>
         <option value="en">EN</option>
         <option value="fr">FR</option>
@@ -368,6 +445,8 @@
 <script>
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
+    const matrixSwitch = document.getElementById('matrix-switch');
+    const body = document.body;
 
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
@@ -375,8 +454,8 @@
     const fontSize = 16;
     let columns = Math.floor(width / fontSize);
     let drops = [];
-
     let speeds = [];
+    let animationId = null;
 
     function initDrops() {
         columns = Math.floor(width / fontSize);
@@ -384,7 +463,6 @@
         speeds = [];
         for (let x = 0; x < columns; x++) {
             drops[x] = Math.random() * -100;
-            // Velocidad aleatoria entre 0.3 y 0.7 para que no sea uniforme
             speeds[x] = Math.random() * 0.4 + 0.3;
         }
     }
@@ -392,7 +470,8 @@
     initDrops();
 
     function draw() {
-        // Estela un poco más larga (opacidad 0.05)
+        if (!matrixSwitch.checked) return;
+
         ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, width, height);
 
@@ -401,24 +480,35 @@
 
         for (let i = 0; i < drops.length; i++) {
             const text = Math.random() > 0.5 ? '0' : '1';
-            // Usamos Math.floor para la posición Y para que el movimiento sea por "pasos" de carácter
             ctx.fillText(text, i * fontSize, Math.floor(drops[i]) * fontSize);
 
             if (Math.floor(drops[i]) * fontSize > height && Math.random() > 0.98) {
                 drops[i] = 0;
             }
-            // Incremento lento basado en su propia velocidad
             drops[i] += speeds[i];
         }
-        requestAnimationFrame(draw);
+        animationId = requestAnimationFrame(draw);
     }
+
+    matrixSwitch.addEventListener('change', () => {
+        if (matrixSwitch.checked) {
+            canvas.classList.add('active');
+            body.classList.add('matrix-mode');
+            draw();
+        } else {
+            canvas.classList.remove('active');
+            body.classList.remove('matrix-mode');
+            cancelAnimationFrame(animationId);
+            // Limpiamos el canvas para que no se quede la última imagen
+            ctx.clearRect(0, 0, width, height);
+        }
+    });
 
     window.addEventListener('resize', () => {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
         initDrops();
+        if (matrixSwitch.checked && !animationId) draw();
     });
-
-    requestAnimationFrame(draw);
 </script>
 </body></html>

@@ -376,18 +376,24 @@
     let columns = Math.floor(width / fontSize);
     let drops = [];
 
+    let speeds = [];
+
     function initDrops() {
         columns = Math.floor(width / fontSize);
         drops = [];
+        speeds = [];
         for (let x = 0; x < columns; x++) {
             drops[x] = Math.random() * -100;
+            // Velocidad aleatoria entre 0.3 y 0.7 para que no sea uniforme
+            speeds[x] = Math.random() * 0.4 + 0.3;
         }
     }
 
     initDrops();
 
     function draw() {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+        // Estela un poco más larga (opacidad 0.05)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, width, height);
 
         ctx.fillStyle = '#00FF00';
@@ -395,12 +401,14 @@
 
         for (let i = 0; i < drops.length; i++) {
             const text = Math.random() > 0.5 ? '0' : '1';
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            // Usamos Math.floor para la posición Y para que el movimiento sea por "pasos" de carácter
+            ctx.fillText(text, i * fontSize, Math.floor(drops[i]) * fontSize);
 
-            if (drops[i] * fontSize > height && Math.random() > 0.975) {
+            if (Math.floor(drops[i]) * fontSize > height && Math.random() > 0.98) {
                 drops[i] = 0;
             }
-            drops[i]++;
+            // Incremento lento basado en su propia velocidad
+            drops[i] += speeds[i];
         }
         requestAnimationFrame(draw);
     }
